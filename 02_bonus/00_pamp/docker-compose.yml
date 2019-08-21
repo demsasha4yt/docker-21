@@ -1,0 +1,21 @@
+web:
+  image: php:7.0-apache
+  environment:
+    - ALLOW_OVERRIDE=true
+  ports:
+    - "8080:80"
+  links:
+    - db
+  volumes:
+    - ./app:/var/www/html/
+
+db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DATABSE: mydb
+    volumes:
+    - ./mysql:/var/lib/
